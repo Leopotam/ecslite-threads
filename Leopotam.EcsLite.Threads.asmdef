@@ -1,0 +1,16 @@
+{
+    "name": "Leopotam.EcsLite.Threads",
+    "rootNamespace": "Leopotam.EcsLite.Threads",
+    "references": [
+        "Leopotam.EcsLite"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
