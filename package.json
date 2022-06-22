@@ -4,7 +4,7 @@
     "displayName": "LeoECS Lite Threads",
     "description": "LeoECS Lite Threads - Поддержка многопоточной обработки.",
     "unity": "2020.3",
-    "version": "2022.3.22",
+    "version": "2022.6.22",
     "keywords": [
         "leoecslite",
         "leoecs",
