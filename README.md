@@ -43,14 +43,14 @@ struct C1 {
 ## ThreadSystem
 ```c#
 class TestThreadSystem : EcsThreadSystem<TestThread, C1> {
-    protected override int GetChunkSize (EcsSystems systems) {
+    protected override int GetChunkSize (IEcsSystems systems) {
         // Минимальное количество сущностей, после которого
         // произойдет разделение обработки на новый поток.
         // Этот метод вызывается каждый цикл обновления.
         return 1000;
     }
 
-    protected override EcsWorld GetWorld (EcsSystems systems) {
+    protected override EcsWorld GetWorld (IEcsSystems systems) {
         // Мир, в котором содержатся фильтры и компонентные пулы.
         return systems.GetWorld ();
     }
@@ -62,7 +62,7 @@ class TestThreadSystem : EcsThreadSystem<TestThread, C1> {
 
     // Дополнительная (опциональная) инициализация данных,
     // которые необходимы для расчетов в потоках.
-    protected override void SetData (EcsSystems systems, ref TestThread thread) {
+    protected override void SetData (IEcsSystems systems, ref TestThread thread) {
         thread.DeltaTime = Time.deltaTime;
     }
 }
