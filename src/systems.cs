@@ -12,7 +12,7 @@ namespace Leopotam.EcsLite.Threads {
         TThread _thread;
         ThreadWorkerHandler _worker;
 
-        public void Run (EcsSystems systems) {
+        public void Run (IEcsSystems systems) {
             if (_filter == null) {
                 var world = GetWorld (systems);
                 _pool1 = world.GetPool<T1> ();
@@ -31,7 +31,7 @@ namespace Leopotam.EcsLite.Threads {
             _thread.Execute (fromIndex, beforeIndex);
         }
 
-        protected virtual void SetData (EcsSystems systems, ref TThread thread) { }
+        protected virtual void SetData (IEcsSystems systems, ref TThread thread) { }
     }
 
     public abstract class EcsThreadSystem<TThread, T1, T2> : EcsThreadSystemBase, IEcsRunSystem
@@ -44,7 +44,7 @@ namespace Leopotam.EcsLite.Threads {
         TThread _thread;
         ThreadWorkerHandler _worker;
 
-        public void Run (EcsSystems systems) {
+        public void Run (IEcsSystems systems) {
             if (_filter == null) {
                 var world = GetWorld (systems);
                 _pool1 = world.GetPool<T1> ();
@@ -65,7 +65,7 @@ namespace Leopotam.EcsLite.Threads {
             _thread.Execute (fromIndex, beforeIndex);
         }
 
-        protected virtual void SetData (EcsSystems systems, ref TThread thread) { }
+        protected virtual void SetData (IEcsSystems systems, ref TThread thread) { }
     }
 
     public abstract class EcsThreadSystem<TThread, T1, T2, T3> : EcsThreadSystemBase, IEcsRunSystem
@@ -80,7 +80,7 @@ namespace Leopotam.EcsLite.Threads {
         TThread _thread;
         ThreadWorkerHandler _worker;
 
-        public void Run (EcsSystems systems) {
+        public void Run (IEcsSystems systems) {
             if (_filter == null) {
                 var world = GetWorld (systems);
                 _pool1 = world.GetPool<T1> ();
@@ -103,7 +103,7 @@ namespace Leopotam.EcsLite.Threads {
             _thread.Execute (fromIndex, beforeIndex);
         }
 
-        protected virtual void SetData (EcsSystems systems, ref TThread thread) { }
+        protected virtual void SetData (IEcsSystems systems, ref TThread thread) { }
     }
 
     public abstract class EcsThreadSystem<TThread, T1, T2, T3, T4> : EcsThreadSystemBase, IEcsRunSystem
@@ -120,7 +120,7 @@ namespace Leopotam.EcsLite.Threads {
         TThread _thread;
         ThreadWorkerHandler _worker;
 
-        public void Run (EcsSystems systems) {
+        public void Run (IEcsSystems systems) {
             if (_filter == null) {
                 var world = GetWorld (systems);
                 _pool1 = world.GetPool<T1> ();
@@ -145,13 +145,13 @@ namespace Leopotam.EcsLite.Threads {
             _thread.Execute (fromIndex, beforeIndex);
         }
 
-        protected virtual void SetData (EcsSystems systems, ref TThread thread) { }
+        protected virtual void SetData (IEcsSystems systems, ref TThread thread) { }
     }
 
     public abstract class EcsThreadSystemBase {
-        protected abstract int GetChunkSize (EcsSystems systems);
+        protected abstract int GetChunkSize (IEcsSystems systems);
         protected abstract EcsFilter GetFilter (EcsWorld world);
-        protected abstract EcsWorld GetWorld (EcsSystems systems);
+        protected abstract EcsWorld GetWorld (IEcsSystems systems);
     }
 
     public interface IEcsThreadBase {
