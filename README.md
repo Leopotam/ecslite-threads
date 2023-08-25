@@ -86,7 +86,7 @@ struct TestThread : IEcsThread<C1> {
         _indices1 = indices1;
     }
 
-    public void Execute (int fromIndex, int beforeIndex) {
+    public void Execute (int threadId, int fromIndex, int beforeIndex) {
         for (int i = fromIndex; i < beforeIndex; i++) {
             var e = _entities[i];
             ref var c1 = ref _pool1[_indices1[e]];
