@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 // The Proprietary or MIT-Red License
-// Copyright (c) 2012-2022 Leopotam <leopotam@yandex.ru>
+// Copyright (c) 2012-2023 Leopotam <leopotam@yandex.ru>
 // ----------------------------------------------------------------------------
 
 using System;
@@ -24,7 +24,7 @@ namespace Leopotam.EcsLite.Threads {
             }
         }
 
-        public static void Run(ThreadWorkerHandler worker, int count, int chunkSize) {
+        public static void Run (ThreadWorkerHandler worker, int count, int chunkSize) {
 #if DEBUG && !LEOECSLITE_NO_SANITIZE_CHECKS
             if (_task != null) { throw new Exception ("Calls from multiple threads not supported."); }
 #endif
@@ -66,12 +66,13 @@ namespace Leopotam.EcsLite.Threads {
         }
 
         static void ThreadProc (object raw) {
-            ref var desc = ref _descs[(int) raw];
+            var threadId = (int) raw;
+            ref var desc = ref _descs[threadId];
             try {
                 while (Thread.CurrentThread.IsAlive) {
                     desc.HasWork.WaitOne ();
                     desc.HasWork.Reset ();
-                    _task.Invoke (desc.FromIndex, desc.BeforeIndex);
+                    _task.Invoke (threadId, desc.FromIndex, desc.BeforeIndex);
                     desc.WorkDone.Set ();
                 }
             } catch {
@@ -88,5 +89,5 @@ namespace Leopotam.EcsLite.Threads {
         }
     }
 
-    delegate void ThreadWorkerHandler (int fromIndex, int beforeIndex);
+    delegate void ThreadWorkerHandler (int threadId, int fromIndex, int beforeIndex);
 }

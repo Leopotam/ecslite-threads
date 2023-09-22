@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 // The Proprietary or MIT-Red License
-// Copyright (c) 2012-2022 Leopotam <leopotam@yandex.ru>
+// Copyright (c) 2012-2023 Leopotam <leopotam@yandex.ru>
 // ----------------------------------------------------------------------------
 
 namespace Leopotam.EcsLite.Threads {
@@ -27,8 +27,8 @@ namespace Leopotam.EcsLite.Threads {
             ThreadService.Run (_worker, _filter.GetEntitiesCount (), GetChunkSize (systems));
         }
 
-        void Execute (int fromIndex, int beforeIndex) {
-            _thread.Execute (fromIndex, beforeIndex);
+        void Execute (int threadId, int fromIndex, int beforeIndex) {
+            _thread.Execute (threadId, fromIndex, beforeIndex);
         }
 
         protected virtual void SetData (IEcsSystems systems, ref TThread thread) { }
@@ -61,8 +61,8 @@ namespace Leopotam.EcsLite.Threads {
             ThreadService.Run (_worker, _filter.GetEntitiesCount (), GetChunkSize (systems));
         }
 
-        void Execute (int fromIndex, int beforeIndex) {
-            _thread.Execute (fromIndex, beforeIndex);
+        void Execute (int threadId, int fromIndex, int beforeIndex) {
+            _thread.Execute (threadId, fromIndex, beforeIndex);
         }
 
         protected virtual void SetData (IEcsSystems systems, ref TThread thread) { }
@@ -99,8 +99,8 @@ namespace Leopotam.EcsLite.Threads {
             ThreadService.Run (_worker, _filter.GetEntitiesCount (), GetChunkSize (systems));
         }
 
-        void Execute (int fromIndex, int beforeIndex) {
-            _thread.Execute (fromIndex, beforeIndex);
+        void Execute (int threadId, int fromIndex, int beforeIndex) {
+            _thread.Execute (threadId, fromIndex, beforeIndex);
         }
 
         protected virtual void SetData (IEcsSystems systems, ref TThread thread) { }
@@ -141,8 +141,8 @@ namespace Leopotam.EcsLite.Threads {
             ThreadService.Run (_worker, _filter.GetEntitiesCount (), GetChunkSize (systems));
         }
 
-        void Execute (int fromIndex, int beforeIndex) {
-            _thread.Execute (fromIndex, beforeIndex);
+        void Execute (int threadId, int fromIndex, int beforeIndex) {
+            _thread.Execute (threadId, fromIndex, beforeIndex);
         }
 
         protected virtual void SetData (IEcsSystems systems, ref TThread thread) { }
@@ -155,7 +155,7 @@ namespace Leopotam.EcsLite.Threads {
     }
 
     public interface IEcsThreadBase {
-        void Execute (int fromIndex, int beforeIndex);
+        void Execute (int threadId, int fromIndex, int beforeIndex);
     }
 
     public interface IEcsThread<T1> : IEcsThreadBase
